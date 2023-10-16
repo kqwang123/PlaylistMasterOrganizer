@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'PutMeOn'`, () => {
+  it(`should have as title 'PlaylistMasterOrganizer'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('PutMeOn');
+    expect(app.title).toEqual('PlaylistMasterOrganizer');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('PutMeOn app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('PlaylistMasterOrganizer app is running!');
   });
 });
