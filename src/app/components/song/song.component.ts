@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Song } from './song';
 
 @Component({
   selector: 'pmo-song',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./song.component.scss']
 })
 export class SongComponent {
+  
+  @Input() song!: Song;
 
+  constructor() { }
 }

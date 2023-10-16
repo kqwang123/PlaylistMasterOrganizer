@@ -35,7 +35,6 @@ export class PlaylistComponent implements OnInit {
           }
         });
       }
-      console.log("Tracks:", this.playlist.tracks);
     }
     catch (error) {
       console.log("Error fetching tracks:", error);
