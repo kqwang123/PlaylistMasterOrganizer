@@ -1,15 +1,15 @@
-<div *ngIf="playlist?.tracks">
+<div *ngIf="playlist">
     <table>
         <tr>
             <th>Name</th>
-            <th>Description</th>
-            <th>ID</th>
+            <!-- <th>Description</th>
+            <th>ID</th> -->
             <th>Tracks</th>
         </tr>
         <tr>
             <td>{{playlist.name}}</td>
-            <td>{{playlist.description}}</td>
-            <td>{{playlist.id}}</td>
+            <!-- <td>{{playlist.description}}</td>
+            <td>{{playlist.id}}</td> -->
             <!-- <tr *ngFor="let song of playlist.tracks">
                 <td>{{song.name}}</td>
                 <td>{{song.artists[0].name}}</td>
@@ -17,5 +17,5 @@
             <td>Tracks Here</td>
         </tr>
     </table>
-    <button (click)="printData()">Get playlist data</button>
+    <button (click)="toggleTracks()">Toggle tracks</button>
 </div>

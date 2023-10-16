@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SpotifyService } from 'src/app/services/spotify.service';
 import { Playlist } from '../playlist/playlist';
 
@@ -9,6 +9,8 @@ import { Playlist } from '../playlist/playlist';
 })
 export class HomeComponent implements OnInit {
 
+  @Input() loggedIn: boolean = false;
+  
   playlists: Playlist[] = [];
 
   constructor(private _spotifyService: SpotifyService) {
@@ -30,7 +32,6 @@ export class HomeComponent implements OnInit {
             tracks: item.tracks
           }
         });
-        console.log(playlists.items[0].tracks.items);
       }
 
     } catch (error) {
