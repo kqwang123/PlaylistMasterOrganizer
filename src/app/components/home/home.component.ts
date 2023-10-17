@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SpotifyService } from 'src/app/services/spotify.service';
 import { Playlist } from '../playlist/playlist';
+import { Song } from '../song/song';
 
 @Component({
   selector: 'pmo-home',
@@ -12,7 +13,6 @@ export class HomeComponent implements OnInit {
   playlists: Playlist[] = [];
 
   constructor(private _spotifyService: SpotifyService) {
-
   }
 
   ngOnInit(): void {
