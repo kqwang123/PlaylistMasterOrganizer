@@ -31,6 +31,7 @@ export class PlaylistComponent implements OnInit {
             name: item.track.name,
             artist: item.track.artists[0].name,
             album: item.track.album.name,
+            image: item.track.album.images[0].url,
             id: item.track.id
           }
         });

@@ -1,3 +1,6 @@
-<div>{{ song.name.length > 50 ? song.name.slice(0, 50) + '...' : song.name }}</div>
-<div>{{ song.artist }}</div>
-<div>{{ song.album }}</div>
+<div class="song-box">
+    <img src="{{ song.image }}" alt="Song Image">
+    <div class="song-title">{{ song.name.length > 50 ? song.name.slice(0, 50) + '...' : song.name }}</div>
+    <div class="artist">{{ song.artist }}</div>
+    <div class="album">{{ song.album }}</div>
+</div>
