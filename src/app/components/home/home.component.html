@@ -6,6 +6,10 @@
             <th>Name</th>
             <th>Tracks</th>
         </tr>
-        <pmo-playlist *ngFor="let playlist of playlists" [playlist]="playlist"></pmo-playlist>
+        <ng-container *ngFor="let playlist of playlists">
+            <tr>
+                <pmo-playlist [playlist]="playlist"></pmo-playlist>
+            </tr>
+        </ng-container>
     </table>
 </div>

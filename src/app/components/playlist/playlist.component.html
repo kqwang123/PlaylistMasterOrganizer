@@ -1,16 +1,19 @@
-<tr *ngIf="playlist">
-    <td>{{playlist.name}}</td>
-    <!-- <td>{{playlist.description}}</td>
-            <td>{{playlist.id}}</td> -->
-    <td *ngIf="playlist.tracks && showTracks">
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Artist</th>
-                <th>Album</th>
-            </tr>
-            <pmo-song *ngFor="let track of playlist.tracks" [song]="track"></pmo-song>
-        </table>
-    </td>
+<td>{{ playlist.name.length > 50 ? playlist.name.slice(0, 50) + '...' : playlist.name }}</td>
+<td>
     <button (click)="toggleTracks()">Toggle tracks</button>
-</tr>
+</td>
+<br>
+<td *ngIf="playlist.tracks && showTracks">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Artist</th>
+            <th>Album</th>
+        </tr>
+        <ng-container *ngFor="let track of playlist.tracks">
+            <tr>
+                <pmo-song [song]="track"></pmo-song>
+            </tr>
+        </ng-container>
+    </table>
+</td>
