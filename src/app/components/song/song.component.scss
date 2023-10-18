@@ -1,14 +1,22 @@
 .song {
     display: flex;
-    padding: 10px;
+    padding: 15px;
     background-color: silver;
-    border: 1px solid #ddd;
+    border: 1px solid black;
+    border-radius: 10   px;
+    &:hover {
+        background-color: gainsboro;
+    }
 }
 
 img {
     width: 200px; 
     height: 200px; 
     object-fit: cover; 
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
 }
 
 .song-info {
@@ -24,18 +32,20 @@ img {
     text-overflow: ellipsis;
     margin-top: 10px;
     font-weight: bold;
-    width: 50ch;
+    width: 50ch;  
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 .artist,
 .album {
     color: dimgray;
     margin-top: 5px;
-}
-
-img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 50ch;
 }
 
 @media (max-width: 768px) {
