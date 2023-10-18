@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
             name: item.name,
             description: item.description,
             id: item.id,
+            image: item.images[0].url,
             tracks: item.tracks
           }
         });

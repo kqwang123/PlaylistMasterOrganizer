@@ -1,9 +1,9 @@
-<div>{{ playlist.name.length > 50 ? playlist.name.slice(0, 50) + '...' : playlist.name }}</div>
+<img src="{{ playlist.image }}" alt="Playlist Image">
+<div class="playlist-title">{{ playlist.name }}</div>
 <button (click)="toggleTracks()">Toggle tracks</button>
 <br>
 <div *ngIf="playlist.tracks && showTracks">
-    <!-- <ng-container *ngFor="let track of playlist.tracks">
+    <ng-container *ngFor="let track of playlist.tracks">
         <pmo-song [song]="track"></pmo-song>
-    </ng-container> -->
-    <pmo-song [song]="playlist.tracks[0]"></pmo-song>
+    </ng-container>
 </div>

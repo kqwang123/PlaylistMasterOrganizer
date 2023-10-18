@@ -1,8 +1,7 @@
 <pmo-login></pmo-login>
 <button (click)="getPlaylists()">Get playlists</button>
 <div *ngIf="playlists.length > 0">
-    <!-- <ng-container *ngFor="let playlist of playlists">
+    <ng-container *ngFor="let playlist of playlists">
         <pmo-playlist [playlist]="playlist"></pmo-playlist>
-    </ng-container> -->
-    <pmo-playlist [playlist]="playlists[0]"></pmo-playlist>
+    </ng-container>
 </div>
