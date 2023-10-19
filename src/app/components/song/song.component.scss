@@ -1,9 +1,10 @@
 .song {
     display: flex;
+    margin-bottom: 10px;
     padding: 15px;
     background-color: silver;
     border: 1px solid black;
-    border-radius: 10   px;
+    width: 33.33%;
     &:hover {
         background-color: gainsboro;
     }
@@ -32,7 +33,7 @@ img {
     text-overflow: ellipsis;
     margin-top: 10px;
     font-weight: bold;
-    width: 50ch;  
+    width: 25ch;  
     &:hover {
         text-decoration: underline;
     }
@@ -45,11 +46,11 @@ img {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 50ch;
+    width: 25ch;
 }
 
 @media (max-width: 768px) {
     .song {
-        padding: 5px;
+       padding: 5px;
     }
 }
