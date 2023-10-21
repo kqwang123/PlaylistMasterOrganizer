@@ -1,10 +1,9 @@
 .song {
     display: flex;
-    margin-bottom: 10px;
+    margin: 10px;
     padding: 15px;
     background-color: silver;
     border: 1px solid black;
-    width: 33.33%;
     &:hover {
         background-color: gainsboro;
     }
@@ -47,10 +46,4 @@ img {
     overflow: hidden;
     text-overflow: ellipsis;
     width: 25ch;
-}
-
-@media (max-width: 768px) {
-    .song {
-       padding: 5px;
-    }
 }

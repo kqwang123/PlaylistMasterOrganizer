@@ -3,7 +3,11 @@
 <button (click)="toggleTracks()">Toggle tracks</button>
 <br>
 <div *ngIf="playlist.tracks && showTracks">
-    <ng-container *ngFor="let track of playlist.tracks" class="song-container">
-        <pmo-song [song]="track"></pmo-song>
-    </ng-container>
+    <div class="row">
+        <ng-container *ngFor="let track of playlist.tracks" class="song-container">
+            <div class="col-md-4">
+                <pmo-song [song]="track" class="song"></pmo-song>
+            </div>
+        </ng-container>
+    </div>
 </div>
