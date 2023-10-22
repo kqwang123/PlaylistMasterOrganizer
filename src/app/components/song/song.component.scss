@@ -9,45 +9,47 @@
     &:hover {
         background-color: gainsboro;
     }
-}
 
-img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
+    img {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
 
-    &:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        &:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
     }
-}
 
-.song-info {
-    display: flex;
-    flex-direction: column;
-    margin-left: 15px;
-}
+    .song-info {
+        display: flex;
+        flex-direction: column;
+        margin-left: 15px;
 
-.song-title {
-    max-width: calc(100% - 10px);;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-top: 10px;
-    font-weight: bold;
-    width: 25ch;
+        .song-title {
+            max-width: calc(100% - 10px);
+            ;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-top: 10px;
+            font-weight: bold;
+            width: 25ch;
 
-    &:hover {
-        text-decoration: underline;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+
+        .artist,
+        .album {
+            color: dimgray;
+            margin-top: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 25ch;
+        }
     }
-}
-
-.artist,
-.album {
-    color: dimgray;
-    margin-top: 5px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 25ch;
 }
