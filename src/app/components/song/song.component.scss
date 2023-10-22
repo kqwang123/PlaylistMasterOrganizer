@@ -1,18 +1,21 @@
 .song {
     display: flex;
     margin: 10px;
+    margin-left: 0px;
     padding: 15px;
     background-color: silver;
     border: 1px solid black;
+
     &:hover {
         background-color: gainsboro;
     }
 }
 
 img {
-    width: 200px; 
-    height: 200px; 
-    object-fit: cover; 
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+
     &:hover {
         transform: scale(1.05);
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
@@ -21,18 +24,19 @@ img {
 
 .song-info {
     display: flex;
-    flex-direction: column; 
-    margin-left: 15px; 
+    flex-direction: column;
+    margin-left: 15px;
 }
 
 .song-title {
-    max-width: 100%;
+    max-width: calc(100% - 10px);;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     margin-top: 10px;
     font-weight: bold;
-    width: 25ch;  
+    width: 25ch;
+
     &:hover {
         text-decoration: underline;
     }

@@ -1,13 +1,17 @@
-<img src="{{ playlist.image }}" alt="Playlist Image">
-<div class="playlist-title">{{ playlist.name }}</div>
-<button (click)="toggleTracks()">Toggle tracks</button>
-<br>
-<div *ngIf="playlist.tracks && showTracks">
-    <div class="row">
-        <ng-container *ngFor="let track of playlist.tracks" class="song-container">
-            <div class="col-md-4">
-                <pmo-song [song]="track" class="song"></pmo-song>
-            </div>
-        </ng-container>
+<div class="playlist">
+    <div class="playlist-content">
+        <img src="{{ playlist.image }}" alt="Playlist Image">
+        <h3 class="playlist-title" title="{{playlist.name}}">{{ playlist.name }}</h3>
+    </div>
+    <button (click)="toggleTracks()">Toggle tracks</button>
+    <br>
+    <div *ngIf="playlist.tracks && showTracks">
+        <div class="row">
+            <ng-container *ngFor="let track of playlist.tracks" class="song-container">
+                <div class="col-md-4">
+                    <pmo-song [song]="track" class="song"></pmo-song>
+                </div>
+            </ng-container>
+        </div>
     </div>
 </div>

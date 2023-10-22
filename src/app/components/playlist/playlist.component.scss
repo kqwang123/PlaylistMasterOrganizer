@@ -1,14 +1,39 @@
+.playlist {
+    background-color: darkgreen;
+    border: 1px solid black;
+    margin: 10px;
+    padding: 15px;
+    &:hover {
+        background-color: forestgreen;
+    }
+}
+
+.playlist-content {
+    display: flex;
+}
+
 img {
     width: 200px;
     height: 200px;
+    object-fit: cover;
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+}
+
+button {
+    margin-top: 10px;
 }
 
 .playlist-title {
-    max-width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
     margin-top: 10px;
     font-weight: bold;
-    width: 50ch;
+
+    &:hover {
+        text-decoration: underline;
+    }
 }
