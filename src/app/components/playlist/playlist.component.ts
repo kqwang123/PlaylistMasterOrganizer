@@ -43,4 +43,8 @@ export class PlaylistComponent implements OnInit {
       throw error;
     }
   }
+
+  openLightbox(): void {
+    this._lightboxService.setActiveImageUrl(this.playlist.image);
+  }
 }

@@ -1,5 +1,6 @@
 <pmo-login></pmo-login>
 <button (click)="getPlaylists()">Get playlists</button>
+<pmo-lightbox></pmo-lightbox>
 <div *ngIf="playlists.length > 0">
     <div class="row">
         <ng-container *ngFor="let playlist of playlists">

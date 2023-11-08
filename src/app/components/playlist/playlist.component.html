@@ -1,6 +1,6 @@
 <div class="playlist">
     <div class="playlist-content">
-        <img src="{{ playlist.image }}" alt="Playlist Image">
+        <img (click)="openLightbox()" src="{{ playlist.image }}" alt="Playlist Image">
         <h3 class="playlist-title" title="{{playlist.name}}">{{ playlist.name }}</h3>
     </div>
     <button (click)="toggleTracks()">Toggle tracks</button>
