@@ -17,4 +17,8 @@ export class LightboxComponent implements OnInit {
       this.activeImageUrl = url;
     });
   }
+
+  closeLightbox(): void {
+    this._lightboxService.setActiveImageUrl('');
+  }
 }
