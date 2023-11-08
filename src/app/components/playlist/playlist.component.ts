@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SpotifyService } from 'src/app/services/spotify.service';
 import { Playlist } from '../playlist/playlist';
+import { LightboxService } from 'src/app/services/lightbox.service';
 
 @Component({
   selector: 'pmo-playlist',
@@ -12,7 +13,7 @@ export class PlaylistComponent implements OnInit {
   @Input() playlist!: Playlist;
   showTracks: boolean = false;
 
-  constructor(private _spotifyService: SpotifyService) { }
+  constructor(private _spotifyService: SpotifyService, private _lightboxService: LightboxService) { }
 
   ngOnInit(): void {
     this.getTracks();

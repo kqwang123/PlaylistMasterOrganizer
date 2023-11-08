@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Song } from './song';
+import { LightboxService } from 'src/app/services/lightbox.service';
 
 @Component({
   selector: 'pmo-song',
@@ -10,5 +11,8 @@ export class SongComponent {
   
   @Input() song!: Song;
 
-  constructor() { }
+  constructor(private _lightboxService: LightboxService) { }
+  openLightbox(): void {
+    this._lightboxService.setActiveImageUrl(this.song.image);
+  }
 }

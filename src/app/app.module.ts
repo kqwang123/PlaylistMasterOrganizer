@@ -11,6 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { SongComponent } from './components/song/song.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PlaylistComponent } from './components/playlist/playlist.component';
+import { LightboxComponent } from './components/lightbox/lightbox.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { PlaylistComponent } from './components/playlist/playlist.component';
     HomeComponent,
     SongComponent,
     PlaylistComponent,
+    LightboxComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 <div class="song">
-    <img src="{{ song.image }}" alt="Song Image" title="">
+    <img (click)="openLightbox()" src="{{ song.image }}" alt="Song Image" title="">
     <div class="song-info">
         <div class="song-title" title="{{song.name}}">{{ song.name }}</div>
         <div class="artist" title="{{song.artist}}">{{ song.artist }}</div>
