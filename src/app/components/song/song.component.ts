@@ -14,5 +14,6 @@ export class SongComponent {
   constructor(private _lightboxService: LightboxService) { }
   openLightbox(): void {
     this._lightboxService.setActiveImageUrl(this.song.image);
+    document.body.classList.add('no-scroll');
   }
 }

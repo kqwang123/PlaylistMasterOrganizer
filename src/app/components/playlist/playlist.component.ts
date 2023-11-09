@@ -46,5 +46,6 @@ export class PlaylistComponent implements OnInit {
 
   openLightbox(): void {
     this._lightboxService.setActiveImageUrl(this.playlist.image);
+    document.body.classList.add('no-scroll');
   }
 }

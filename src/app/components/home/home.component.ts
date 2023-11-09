@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SpotifyService } from 'src/app/services/spotify.service';
 import { Playlist } from '../playlist/playlist';
-import { Song } from '../song/song';
 
 @Component({
   selector: 'pmo-home',

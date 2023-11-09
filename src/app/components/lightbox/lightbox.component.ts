@@ -20,5 +20,6 @@ export class LightboxComponent implements OnInit {
 
   closeLightbox(): void {
     this._lightboxService.setActiveImageUrl('');
+    document.body.classList.remove('no-scroll');
   }
 }
