@@ -22,4 +22,7 @@ export class LightboxComponent implements OnInit {
     this._lightboxService.setActiveImageUrl('');
     document.body.classList.remove('no-scroll');
   }
+  handleOverlayClick(event: Event): void {
+    event.stopPropagation(); 
+  }
 }

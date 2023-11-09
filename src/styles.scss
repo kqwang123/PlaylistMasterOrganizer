@@ -15,3 +15,7 @@
 body.no-scroll {
     overflow: hidden;
 }
+
+img {
+    -webkit-user-drag: none;
+}

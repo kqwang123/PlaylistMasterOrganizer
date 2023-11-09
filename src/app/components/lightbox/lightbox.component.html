@@ -1,3 +1,6 @@
-<div class="lightbox" *ngIf="activeImageUrl">
-    <img (click)="closeLightbox()" src="{{ activeImageUrl }}" alt="Active Image">
+<div (click)="closeLightbox()" class="lightbox" *ngIf="activeImageUrl">
+    <div (click)="handleOverlayClick($event)" class="overlay">
+        <img src="{{ activeImageUrl }}" alt="Active Image">
+        <button (click)="closeLightbox()">Close</button>
+    </div>
 </div>
