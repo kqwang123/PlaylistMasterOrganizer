@@ -26,8 +26,9 @@ export class LightboxComponent implements OnInit {
       setTimeout(() => {
         lightbox.classList.remove('closing');
         this._lightboxService.setActiveImageUrl('');
-        document.body.classList.remove('no-scroll'); // prevents scrolling in body when lightbox is open
-      }, 400);
+      }, 400); 
+      
+      document.body.classList.remove('no-scroll'); // prevents scrolling in body when lightbox is open
     }
   }
   handleOverlayClick(event: Event): void {

@@ -1,11 +1,8 @@
 .playlist {
-    background-color: darkgreen;
+    background-color: forestgreen;
     border: 1px solid black;
     margin: 10px;
     padding: 15px;
-    &:hover {
-        background-color: forestgreen;
-    }
 
     .playlist-content {
         display: flex;
