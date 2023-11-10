@@ -19,10 +19,18 @@ export class LightboxComponent implements OnInit {
   }
 
   closeLightbox(): void {
-    this._lightboxService.setActiveImageUrl('');
-    document.body.classList.remove('no-scroll');
+    const lightbox = document.querySelector('.lightbox');
+    if (lightbox) {
+      lightbox.classList.add('closing');
+
+      setTimeout(() => {
+        lightbox.classList.remove('closing');
+        this._lightboxService.setActiveImageUrl('');
+        document.body.classList.remove('no-scroll'); // prevents scrolling in body when lightbox is open
+      }, 400);
+    }
   }
   handleOverlayClick(event: Event): void {
-    event.stopPropagation(); 
+    event.stopPropagation(); // prevents overlay click from closing lightbox
   }
 }

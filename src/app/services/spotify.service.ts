@@ -19,7 +19,7 @@ export class SpotifyService {
 
   }
 
-  login(): void {
+  login(): void { // logs in to Spotify, DO NOT CHANGE
     const auth_query_parameters = new URLSearchParams({
       response_type: 'code',
       client_id: this._clientId,
@@ -31,7 +31,7 @@ export class SpotifyService {
     window.location.href = spotifyAuthUrl;
   }
 
-  exchangeCodeForToken(code: string): void {
+  exchangeCodeForToken(code: string): void { // exchanges code for token, DO NOT CHANGE
     const body = new URLSearchParams({
       code: code,
       redirect_uri: this._redirectUri,
@@ -52,7 +52,7 @@ export class SpotifyService {
     });
   }
 
-  async getData(endpoint: string): Promise<any> {
+  async getData(endpoint: string): Promise<any> { // gets data from Spotify given queries, DO NOT CHANGE
     if (this._accessToken === null) {
       return null;
     } else {
