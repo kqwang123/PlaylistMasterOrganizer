@@ -3,53 +3,92 @@
     margin: 10px;
     margin-left: 0px;
     padding: 15px;
-    background-color: silver;
+    background-color: rgb(75, 75, 75);
     border: 1px solid black;
 
     &:hover {
-        background-color: gainsboro;
+        background-color: rgb(100, 100, 100);
+
+        .artist,
+        .album {
+            color: white !important;
+        }
     }
 
-    img {
-        width: 200px;
-        height: 200px;
-        object-fit: cover; // prevents image from stretching
+
+
+    // TODO: add droplight effect for text and text overlay for image
+
+    // TODO: add tags horizontally for song info
+
+    // TODO: add scrollwheel behind tags and vertical scrollwheel for songs
+
+
+
+
+    .image-container {
+        position: relative;
+
+        img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover; // prevents image from stretching
+            opacity: 0.8;
+        }
+
+        .dim-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            pointer-events: none;
+        }
+
+        .song-info {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+            margin-left: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+
+            .song-title {
+                max-width: calc(100% - 10px);
+                font-size: small;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin-top: 10px;
+                font-weight: bold;
+                width: 23ch;
+                color: white;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+
+
+            .artist,
+            .album {
+                color: gainsboro;
+                font-size: x-small;
+                margin-top: 5px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                width: 25ch;
+            }
+        }
 
         &:hover {
             transform: scale(1.05);
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-        }
-    }
-
-    .song-info {
-        display: flex;
-        flex-direction: column;
-        margin-left: 15px;
-
-        .song-title {
-            max-width: calc(100% - 10px);
-            ;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            margin-top: 10px;
-            font-weight: bold;
-            width: 25ch;
-
-            &:hover {
-                text-decoration: underline;
-            }
-        }
-
-
-        .artist,
-        .album {
-            color: dimgray;
-            margin-top: 5px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            width: 25ch;
         }
     }
 }
