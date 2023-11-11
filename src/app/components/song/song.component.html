@@ -8,4 +8,7 @@
             <div class="album" title="{{song.album}}">{{ song.album }}</div>
         </div>
     </div>
+    <div class="tags" *ngFor="let genre of genres">
+        <pmo-tag [name]="genre"></pmo-tag>
+    </div>
 </div>
