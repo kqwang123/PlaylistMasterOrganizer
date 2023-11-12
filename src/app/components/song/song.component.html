@@ -1,4 +1,4 @@
-<div class="song">
+<div class="song" [style.display]="display ? 'flex' : 'none'">
     <div class="image-container">
         <img (click)="openLightbox()" src="{{ song.image }}" alt="Song Image" title="">
         <div class="dim-overlay"></div>

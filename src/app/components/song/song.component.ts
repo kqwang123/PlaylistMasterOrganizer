@@ -11,6 +11,7 @@ import { SpotifyService } from 'src/app/services/spotify.service';
 export class SongComponent implements OnInit {
   
   @Input() song!: Song;
+  display : boolean = true;
   genres: string[] = [];
 
   constructor(private _spotifyService: SpotifyService, private _lightboxService: LightboxService) { }
@@ -18,15 +19,30 @@ export class SongComponent implements OnInit {
   ngOnInit(): void {
     this.getGenres();
   }
+
+  toggleDisplay(): void {
+    this.display = !this.display;
+  }
+
   async getGenres(): Promise<void> {
     try {
       const track = await this._spotifyService.getData(`tracks/${this.song.id}`);
-      const id = track.artists[0].id;
-      const artist = await this._spotifyService.getData(`artists/${id}`);
-      this.genres = artist.genres;
+      for (let el of track.artists) {
+        const artistID = el.id;
+        const artist = await this._spotifyService.getData(`artists/${artistID}`);
+        const newGenres = artist.genres.filter((genre: string) => !this.genres.includes(genre));
 
-      // TODO: Implement album genres when they are released
-      
+        this.genres.push(...newGenres);
+      }
+
+      // TODO: Implement album genres when they are released on spotify api
+
+      // const albumID = track.album.id;
+      // const album = await this._spotifyService.getData(`albums/${albumID}`);
+      // const newGenres = album.genres.filter((genre: string) => !this.genres.includes(genre));
+      // this.genres.push(...newGenres);
+
+      this.genres.sort();      
     }
     catch (error) {
       console.log("Error fetching genres:", error);

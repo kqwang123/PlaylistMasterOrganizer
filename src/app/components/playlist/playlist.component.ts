@@ -11,6 +11,7 @@ import { LightboxService } from 'src/app/services/lightbox.service';
 export class PlaylistComponent implements OnInit {
 
   @Input() playlist!: Playlist;
+  @Input() filteredGenres!: string[];
   showTracks: boolean = false;
 
   constructor(private _spotifyService: SpotifyService, private _lightboxService: LightboxService) { }
@@ -25,7 +26,7 @@ export class PlaylistComponent implements OnInit {
 
   async getTracks(): Promise<void> {
     try {
-      const tracks = await this._spotifyService.getData(`playlists/${this.playlist.id}/tracks`);
+      let tracks = await this._spotifyService.getData(`playlists/${this.playlist.id}/tracks`);
       if (tracks && tracks.items) {
         this.playlist.tracks = tracks.items.map((item: any) => {
           return {
@@ -36,6 +37,22 @@ export class PlaylistComponent implements OnInit {
             id: item.track.id
           }
         });
+
+        while (tracks.next) {
+          tracks = await this._spotifyService.getData(tracks.next.substring(27, tracks.next.length));
+          if (tracks && tracks.items) {
+            const trackPage = tracks.items.map((item: any) => {
+              return {
+                name: item.track.name,
+                artist: item.track.artists[0].name,
+                album: item.track.album.name,
+                image: item.track.album.images[0].url,
+                id: item.track.id
+              }
+            });
+            this.playlist.tracks.push(...trackPage);
+          }
+        }
       }
     }
     catch (error) {
