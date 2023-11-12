@@ -4,4 +4,5 @@ export interface Song {
     album: string;
     image: string;
     id: string;
+    genres: string[];
 }

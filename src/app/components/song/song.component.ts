@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Song } from './song';
 import { LightboxService } from 'src/app/services/lightbox.service';
 import { SpotifyService } from 'src/app/services/spotify.service';
@@ -11,8 +11,8 @@ import { SpotifyService } from 'src/app/services/spotify.service';
 export class SongComponent implements OnInit {
   
   @Input() song!: Song;
-  display : boolean = true;
-  genres: string[] = [];
+  @Input() selectedTags: string[] = [];
+  @Output() tagSelected: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private _spotifyService: SpotifyService, private _lightboxService: LightboxService) { }
 
@@ -20,8 +20,9 @@ export class SongComponent implements OnInit {
     this.getGenres();
   }
 
-  toggleDisplay(): void {
-    this.display = !this.display;
+  onTagSelected(tag: string): void {
+    this.selectedTags.push(tag);
+    this.tagSelected.emit(tag);
   }
 
   async getGenres(): Promise<void> {
@@ -30,9 +31,9 @@ export class SongComponent implements OnInit {
       for (let el of track.artists) {
         const artistID = el.id;
         const artist = await this._spotifyService.getData(`artists/${artistID}`);
-        const newGenres = artist.genres.filter((genre: string) => !this.genres.includes(genre));
+        const newGenres = artist.genres.filter((genre: string) => !this.song.genres.includes(genre));
 
-        this.genres.push(...newGenres);
+        this.song.genres.push(...newGenres);
       }
 
       // TODO: Implement album genres when they are released on spotify api
@@ -42,7 +43,7 @@ export class SongComponent implements OnInit {
       // const newGenres = album.genres.filter((genre: string) => !this.genres.includes(genre));
       // this.genres.push(...newGenres);
 
-      this.genres.sort();      
+      this.song.genres.sort();      
     }
     catch (error) {
       console.log("Error fetching genres:", error);

@@ -8,7 +8,13 @@
     <div *ngIf="playlist.tracks">
         <div class="row">
             <ng-container class="song-container" *ngFor="let track of playlist.tracks">
-                <pmo-song [song]="track" class="song" [style.display]="showTracks ? 'block' : 'none'"></pmo-song>
+                <pmo-song 
+                    [song]="track" 
+                    [selectedTags]=[]
+                    class="song" 
+                    [style.display]="showTracks && trackHasFilteredGenre(track) ? 'block' : 'none'"
+                    (tagSelected)="handleTagSelection($event)"
+                ></pmo-song>
             </ng-container>
         </div>
     </div>

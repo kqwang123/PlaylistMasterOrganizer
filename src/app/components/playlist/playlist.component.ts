@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { SpotifyService } from 'src/app/services/spotify.service';
 import { Playlist } from '../playlist/playlist';
 import { LightboxService } from 'src/app/services/lightbox.service';
+import { Song } from '../song/song';
 
 @Component({
   selector: 'pmo-playlist',
@@ -11,13 +12,30 @@ import { LightboxService } from 'src/app/services/lightbox.service';
 export class PlaylistComponent implements OnInit {
 
   @Input() playlist!: Playlist;
-  @Input() filteredGenres!: string[];
+  filteredGenres: string[] = [];
   showTracks: boolean = false;
 
   constructor(private _spotifyService: SpotifyService, private _lightboxService: LightboxService) { }
 
   ngOnInit(): void {
     this.getTracks();
+  }
+
+  trackHasFilteredGenre(track: Song): boolean {
+    if (!this.filteredGenres || this.filteredGenres.length === 0) {
+      return true;
+    }
+  
+    const trackGenres = track.genres || [];
+    return trackGenres.some((genre: string) => this.filteredGenres.includes(genre));
+  }
+
+  handleTagSelection(tag: string): void {
+    if (!this.filteredGenres.includes(tag)) {
+      this.filteredGenres.push(tag);
+    } else {
+      this.filteredGenres = this.filteredGenres.filter(genre => genre !== tag);
+    }
   }
 
   toggleTracks(): void {
@@ -34,7 +52,8 @@ export class PlaylistComponent implements OnInit {
             artist: item.track.artists[0].name,
             album: item.track.album.name,
             image: item.track.album.images[0].url,
-            id: item.track.id
+            id: item.track.id,
+            genres: []
           }
         });
 
@@ -47,7 +66,8 @@ export class PlaylistComponent implements OnInit {
                 artist: item.track.artists[0].name,
                 album: item.track.album.name,
                 image: item.track.album.images[0].url,
-                id: item.track.id
+                id: item.track.id,
+                genres: []
               }
             });
             this.playlist.tracks.push(...trackPage);

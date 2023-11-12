@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'pmo-tag',
@@ -7,7 +7,17 @@ import { Component, Input } from '@angular/core';
 })
 export class TagComponent {
   @Input() name!: string;
+  selected: boolean = false;
+  @Output() tagSelected: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(private _el: ElementRef) { }
 
+  toggleSelected(): void {
+    this.selected = !this.selected;
+    
+    const tag = this._el.nativeElement.querySelector('.tag');
+    tag.classList.toggle('selected');
+    
+    this.tagSelected.emit(this.name);
+  }
 }

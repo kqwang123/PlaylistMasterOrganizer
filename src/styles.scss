@@ -12,6 +12,10 @@
 /* Importing Datepicker SCSS file. */
 @import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
 
+* {
+    user-select: none;
+}
+
 body.no-scroll {
     overflow: hidden;
 }
