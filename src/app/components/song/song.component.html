@@ -9,6 +9,6 @@
         </div>
     </div>
     <div class="tags" *ngFor="let genre of song.genres">
-        <pmo-tag [name]="genre" (tagSelected)="onTagSelected($event)"></pmo-tag>
+        <pmo-tag [name]="genre" [selectedTags]="selectedTags" (tagSelected)="onTagSelected($event)"></pmo-tag>
     </div>
 </div>

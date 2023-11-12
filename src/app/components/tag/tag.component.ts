@@ -7,17 +7,17 @@ import { Component, Input, Output, EventEmitter, ElementRef } from '@angular/cor
 })
 export class TagComponent {
   @Input() name!: string;
-  selected: boolean = false;
+  @Input() selectedTags: string[] = [];
+  get selected(): boolean {
+    return this.selectedTags.includes(this.name);
+  }
+
   @Output() tagSelected: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private _el: ElementRef) { }
+  constructor() { }
 
   toggleSelected(): void {
-    this.selected = !this.selected;
-    
-    const tag = this._el.nativeElement.querySelector('.tag');
-    tag.classList.toggle('selected');
-    
     this.tagSelected.emit(this.name);
+    console.log(this.selected);
   }
 }

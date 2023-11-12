@@ -21,7 +21,6 @@ export class SongComponent implements OnInit {
   }
 
   onTagSelected(tag: string): void {
-    this.selectedTags.push(tag);
     this.tagSelected.emit(tag);
   }
 

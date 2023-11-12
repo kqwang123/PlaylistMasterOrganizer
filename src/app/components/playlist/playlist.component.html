@@ -10,7 +10,7 @@
             <ng-container class="song-container" *ngFor="let track of playlist.tracks">
                 <pmo-song 
                     [song]="track" 
-                    [selectedTags]=[]
+                    [selectedTags]="filteredGenres"
                     class="song" 
                     [style.display]="showTracks && trackHasFilteredGenre(track) ? 'block' : 'none'"
                     (tagSelected)="handleTagSelection($event)"
