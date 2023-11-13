@@ -4,7 +4,7 @@
         <div class="dim-overlay"></div>
         <div class="song-info">
             <div class="song-title" title="{{song.name}}"   >{{ song.name }}</div>
-            <div class="artist" title="{{song.artists[0].name}}">{{ song.artists[0].name }}</div>
+            <div class="artist" title="{{getArtists()}}">{{ getArtists() }}</div>
             <div class="album" title="{{song.album.name}}">{{ song.album.name }}</div>
         </div>
     </div>

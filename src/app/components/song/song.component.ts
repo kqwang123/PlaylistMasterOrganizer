@@ -53,4 +53,8 @@ export class SongComponent implements OnInit {
     this._lightboxService.setActiveImageUrl(this.song.album.images[0].url);
     document.body.classList.add('no-scroll'); // prevents scrolling in body when lightbox is open
   }
+
+  getArtists(): string {
+    return this.song.artists.map((a: any) => a.name).join(', ');
+  }
 }
