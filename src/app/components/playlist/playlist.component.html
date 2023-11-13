@@ -1,18 +1,18 @@
 <div class="playlist">
     <div class="playlist-content">
-        <img (click)="openLightbox()" src="{{ playlist.image }}" alt="Playlist Image">
+        <img (click)="openLightbox()" src="{{ playlist.images[0].url }}" alt="Playlist Image">
         <h3 class="playlist-title" title="{{playlist.name}}">{{ playlist.name }}</h3>
     </div>
     <button (click)="toggleTracks()">Toggle tracks</button>
     <br>
-    <div *ngIf="playlist.tracks">
+    <div *ngIf="tracks.length > 0">
         <div class="row">
-            <ng-container class="song-container" *ngFor="let track of playlist.tracks">
+            <ng-container class="song-container" *ngFor="let track of tracks">
                 <pmo-song 
                     [song]="track" 
                     [selectedTags]="filteredGenres"
                     class="song" 
-                    [style.display]="showTracks && trackHasFilteredGenre(track) ? 'block' : 'none'"
+                    [style.display]="showTracks && trackHasFilteredGenre(track.genres) ? 'block' : 'none'"
                     (tagSelected)="handleTagSelection($event)"
                 ></pmo-song>
             </ng-container>

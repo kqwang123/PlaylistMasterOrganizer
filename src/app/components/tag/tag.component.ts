@@ -18,6 +18,5 @@ export class TagComponent {
 
   toggleSelected(): void {
     this.tagSelected.emit(this.name);
-    console.log(this.selected);
   }
 }

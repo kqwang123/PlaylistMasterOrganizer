@@ -1,8 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SpotifyService } from 'src/app/services/spotify.service';
-import { Playlist } from '../playlist/playlist';
 import { LightboxService } from 'src/app/services/lightbox.service';
-import { Song } from '../song/song';
 
 @Component({
   selector: 'pmo-playlist',
@@ -11,7 +9,8 @@ import { Song } from '../song/song';
 })
 export class PlaylistComponent implements OnInit {
 
-  @Input() playlist!: Playlist;
+  @Input() playlist!: any;
+  tracks: any[] = [];
   filteredGenres: string[] = [];
   showTracks: boolean = false;
 
@@ -21,13 +20,13 @@ export class PlaylistComponent implements OnInit {
     this.getTracks();
   }
 
-  trackHasFilteredGenre(track: Song): boolean {
+  trackHasFilteredGenre(genres: string[]): boolean {
     if (!this.filteredGenres || this.filteredGenres.length === 0) {
       return true;
     }
   
-    const trackGenres = track.genres || [];
-    return trackGenres.some((genre: string) => this.filteredGenres.includes(genre));
+    const trackGenres = genres || [];
+    return this.filteredGenres.every(genre => trackGenres.includes(genre));
   }
 
   handleTagSelection(tag: string): void {
@@ -45,33 +44,27 @@ export class PlaylistComponent implements OnInit {
   async getTracks(): Promise<void> {
     try {
       let tracks = await this._spotifyService.getData(`playlists/${this.playlist.id}/tracks`);
-      if (tracks && tracks.items) {
-        this.playlist.tracks = tracks.items.map((item: any) => {
-          return {
-            name: item.track.name,
-            artist: item.track.artists[0].name,
-            album: item.track.album.name,
-            image: item.track.album.images[0].url,
-            id: item.track.id,
-            genres: []
-          }
-        });
+      let trackIDs = [];
 
-        while (tracks.next) {
-          tracks = await this._spotifyService.getData(tracks.next.substring(27, tracks.next.length));
-          if (tracks && tracks.items) {
-            const trackPage = tracks.items.map((item: any) => {
-              return {
-                name: item.track.name,
-                artist: item.track.artists[0].name,
-                album: item.track.album.name,
-                image: item.track.album.images[0].url,
-                id: item.track.id,
-                genres: []
-              }
-            });
-            this.playlist.tracks.push(...trackPage);
+      for (let el of tracks.items) {
+        trackIDs.push(el.track.id);
+      }
+      while (tracks.next) {
+        tracks = await this._spotifyService.getData(tracks.next.substring(27, tracks.next.length));
+        if (tracks && tracks.items) {
+          for (let el of tracks.items) {
+            trackIDs.push(el.track.id);
           }
+        }
+      }
+
+      // spotify can only return 50 tracks at a time, so we need to make multiple requests
+
+      for (let i = 0; i < trackIDs.length; i += 50) {
+        const trackIDsString = trackIDs.slice(i, i + 50).join(',');
+        const tracksData = await this._spotifyService.getData(`tracks?ids=${trackIDsString}`);
+        if (tracksData && tracksData.tracks) {
+          this.tracks.push(...tracksData.tracks);
         }
       }
     }
@@ -82,7 +75,7 @@ export class PlaylistComponent implements OnInit {
   }
 
   openLightbox(): void {
-    this._lightboxService.setActiveImageUrl(this.playlist.image);
+    this._lightboxService.setActiveImageUrl(this.playlist.images[0].url);
     document.body.classList.add('no-scroll'); // prevents scrolling in body when lightbox is open
   }
 }

@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Song } from './song';
 import { LightboxService } from 'src/app/services/lightbox.service';
 import { SpotifyService } from 'src/app/services/spotify.service';
 
@@ -10,13 +9,14 @@ import { SpotifyService } from 'src/app/services/spotify.service';
 })
 export class SongComponent implements OnInit {
   
-  @Input() song!: Song;
+  @Input() song!: any;
   @Input() selectedTags: string[] = [];
   @Output() tagSelected: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private _spotifyService: SpotifyService, private _lightboxService: LightboxService) { }
 
   ngOnInit(): void {
+    this.song.genres = [];
     this.getGenres();
   }
 
@@ -26,8 +26,7 @@ export class SongComponent implements OnInit {
 
   async getGenres(): Promise<void> {
     try {
-      const track = await this._spotifyService.getData(`tracks/${this.song.id}`);
-      for (let el of track.artists) {
+      for (let el of this.song.artists) {
         const artistID = el.id;
         const artist = await this._spotifyService.getData(`artists/${artistID}`);
         const newGenres = artist.genres.filter((genre: string) => !this.song.genres.includes(genre));
@@ -51,7 +50,7 @@ export class SongComponent implements OnInit {
   }
 
   openLightbox(): void {
-    this._lightboxService.setActiveImageUrl(this.song.image);
+    this._lightboxService.setActiveImageUrl(this.song.album.images[0].url);
     document.body.classList.add('no-scroll'); // prevents scrolling in body when lightbox is open
   }
 }

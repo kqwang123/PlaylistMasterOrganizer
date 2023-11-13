@@ -1,11 +1,11 @@
 <div class="song">
     <div class="image-container">
-        <img (click)="openLightbox()" src="{{ song.image }}" alt="Song Image" title="">
+        <img (click)="openLightbox()" src="{{ song.album.images[0].url }}" alt="Song Image" title="">
         <div class="dim-overlay"></div>
         <div class="song-info">
-            <div class="song-title" title="{{song.name}}">{{ song.name }}</div>
-            <div class="artist" title="{{song.artist}}">{{ song.artist }}</div>
-            <div class="album" title="{{song.album}}">{{ song.album }}</div>
+            <div class="song-title" title="{{song.name}}"   >{{ song.name }}</div>
+            <div class="artist" title="{{song.artists[0].name}}">{{ song.artists[0].name }}</div>
+            <div class="album" title="{{song.album.name}}">{{ song.album.name }}</div>
         </div>
     </div>
     <div class="tags" *ngFor="let genre of song.genres">

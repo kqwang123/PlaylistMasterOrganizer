@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SpotifyService } from 'src/app/services/spotify.service';
-import { Playlist } from '../playlist/playlist';
 
 @Component({
   selector: 'pmo-home',
@@ -9,7 +8,7 @@ import { Playlist } from '../playlist/playlist';
 })
 export class HomeComponent implements OnInit {
 
-  playlists: Playlist[] = [];
+  playlists: any[] = [];
 
   constructor(private _spotifyService: SpotifyService) {
   }
@@ -21,15 +20,7 @@ export class HomeComponent implements OnInit {
     try {
       const playlists = await this._spotifyService.getData("me/playlists");
       if (playlists && playlists.items) {
-        this.playlists = playlists.items.map((item: any) => {
-          return {
-            name: item.name,
-            description: item.description,
-            id: item.id,
-            image: item.images[0].url,
-            tracks: item.tracks
-          }
-        });
+        this.playlists = playlists.items;
       }
 
     } catch (error) {
