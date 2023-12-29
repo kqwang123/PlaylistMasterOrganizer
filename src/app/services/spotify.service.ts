@@ -12,6 +12,8 @@ export class SpotifyService {
 
   private _accessToken = null;
 
+  private _callCount: number = 0;
+
   constructor(private _httpClient: HttpClient) {
     
     this._clientId = environment.CLIENT_ID;
@@ -57,6 +59,13 @@ export class SpotifyService {
       return null;
     } else {
       try {
+
+        if (this._callCount >= 50) {
+          await new Promise(resolve => setTimeout(resolve, 1000)); // Wait for a sec, feel me?
+        }
+
+        this._callCount++;
+
         const response = await this._httpClient.get<any>(
           `https://api.spotify.com/v1/${endpoint}`,
           {
@@ -70,6 +79,8 @@ export class SpotifyService {
       } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
+      } finally {
+        this._callCount--;
       }
     }
   }

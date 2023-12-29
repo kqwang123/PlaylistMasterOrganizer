@@ -1,0 +1,16 @@
+.add-tag-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #4CAF50; // Adjust this to your color scheme
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  
+    &:hover {
+      background-color: #45a049; // Adjust hover color
+    }
+}
+  

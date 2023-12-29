@@ -11,4 +11,5 @@
     <div class="tags" *ngFor="let genre of song.genres">
         <pmo-tag [name]="genre" [selectedTags]="selectedTags" (tagSelected)="onTagSelected($event)"></pmo-tag>
     </div>
+    <pmo-add-tag-button></pmo-add-tag-button>
 </div>

@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PlaylistComponent } from './components/playlist/playlist.component';
 import { LightboxComponent } from './components/lightbox/lightbox.component';
 import { TagComponent } from './components/tag/tag.component';
+import { AddTagButtonComponent } from './components/add-tag-button/add-tag-button.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { TagComponent } from './components/tag/tag.component';
     PlaylistComponent,
     LightboxComponent,
     TagComponent,
+    AddTagButtonComponent,
   ],
   imports: [
     BrowserModule,

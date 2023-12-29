@@ -21,10 +21,10 @@
 }
 
 .selected {
-  background-color: white;
+  background-color: red;
   border: 1px solid red;
 
   .name {
-    color: red;
+    color: white;
   }
 }
